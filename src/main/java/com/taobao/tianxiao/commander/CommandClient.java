@@ -1,5 +1,6 @@
 package com.taobao.tianxiao.commander;
 
+import com.taobao.tianxiao.commander.util.Constants;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -277,7 +278,7 @@ public class CommandClient {
     private SocketChannel doConnection() throws IOException {
         SocketChannel channel = SocketChannel.open();
         channel.configureBlocking(false);
-        channel.connect(new InetSocketAddress(serverHost, 7322));
+        channel.connect(new InetSocketAddress(serverHost, Constants.PORT));
         return channel;
     }
 }

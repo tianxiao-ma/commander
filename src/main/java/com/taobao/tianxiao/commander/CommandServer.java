@@ -1,5 +1,6 @@
 package com.taobao.tianxiao.commander;
 
+import com.taobao.tianxiao.commander.util.Constants;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -33,7 +34,6 @@ import java.util.regex.Pattern;
 public class CommandServer {
     private static final Log logger = LogFactory.getLog("CommandServerLog");
 
-    private static final int PORT = 7322;
     private Selector selector;
     // 已经建立连接，并且已经完成注册的客户端
     private Map<String, SelectionKey> registerClientMap = new ConcurrentHashMap<String, SelectionKey>();
@@ -172,12 +172,12 @@ public class CommandServer {
             ServerSocketChannel serverChannel = ServerSocketChannel.open();
             serverChannel.configureBlocking(false);
             serverChannel.register(selector, SelectionKey.OP_ACCEPT);
-            serverChannel.socket().bind(new InetSocketAddress(ip, PORT));
+            serverChannel.socket().bind(new InetSocketAddress(ip, Constants.PORT));
         } catch (IOException e) {
 
         }
 
-        logger.warn("command server start at localhost(" + ip + ") on port:" + PORT);
+        logger.warn("command server start at localhost(" + ip + ") on port:" + Constants.PORT);
 
         int reselectCount = 0;
         for (; ; ) {
